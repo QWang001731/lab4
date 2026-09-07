@@ -1,42 +1,21 @@
 name: CI
 
-on:
-
-push:
-
-branches:
-
-- main
-
-pull_request:
-
-branches:
-
-- main
-
-
+'on':
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-
-validate:
-
-name: validate
-
-runs-on: ubuntu-latest
-
-
-
-steps:
-
-- name: Checkout
-
-uses: actions/checkout@v6
-
-- name: Validate repository
-
-run: |
-
-git status --short
-
-test -f CONTRIBUTING.md
-
+  validate:
+    name: validate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Validate repository
+        run: |
+          git status --short
+          test -f CONTRIBUTING.md
