@@ -1,12 +1,31 @@
-steps:
-  - name: Checkout source code
-    uses: actions/checkout@v6
+name: Continuous Integration
 
-  - name: Configure
-    run: cmake -S . -B build
+on:
+  push:
+    branches:
+      - master
 
-  - name: Build
-    run: cmake --build build
+  pull_request:
+    branches:
+      - master
 
-  - name: Test
-    run: ctest --test-dir build --output-on-failure
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v6
+
+      - name: Configure
+        run: cmake -S . -B build
+
+      - name: Build
+        run: cmake --build build
+
+      - name: Test
+        run: ctest --test-dir build --output-on-failure
