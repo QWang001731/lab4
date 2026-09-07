@@ -17,9 +17,6 @@
 
 
 ## Commit Rules
-
-
-
 Commits should:
 
 
